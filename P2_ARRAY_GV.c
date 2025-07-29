@@ -1,3 +1,8 @@
+/*PROGRAM-2 A MENU FOR ARRAY OPERATIONS(INSERT,DELETE,DISPLAY,SEARCH,SORT) USING GLOBAL VARIABLE
+@ALBIN MAMMEN MATHEW
+16/07/2025
+*/
+
 #include<stdio.h>
 int stack[5];	//declaring stack
 int top=-1; 	//declaring variable positionof top element 
@@ -20,39 +25,52 @@ int erase() //function to delete top element
 	}
 	return top;
 }
+void search(int b,int a[5],int top){ //function to search elements
+	int isfound=0,i;
+	for (i=0;i<=top;i++){
+		if(b==a[i]){
+			isfound=1;
+			printf("Element found at [%d] position. \n",i);
+		}
+	}
+	if(isfound==0)
+		printf("element not found");
+}
+	
 void display(){ //function to display the elements in stack
 	if (top==-1)
 		printf("Empty Stack");
 	else{
-		for(int i=0;i<=top;i++){
+		int i;
+		for(i=0;i<=top;i++){
 			printf("%d \t",stack[i]);
 		}
 		printf("\n");
 	}
 }
-void search(int b){
-	int isfound=0;
-	if (top==-1)
-		printf("Empty Stack");
-	for(int i=0;i<=top;i++){
-		if (b==stack[i]){
-			isfound=1;
-			printf("Element found at [%d] position.\n",i);
+
+void sort(){	//function to sort the stack
+	int i,j,temp;
+	for(i=0;i<5;i++){
+		for(j=0;j<5;j++){
+			if(stack[i]<stack[j]){
+				temp=stack[i];
+				stack[i]=stack[j];
+				stack[j]=temp;
+			}
 		}
 	}
-	if (isfound=0){
-		printf("Element not found.");
-	}
 }
+
 int menu(){ //function for menu
 	int ch;
-	printf("\n INSERT-1 \n DELETE-2 \n DISPLAY-3 \n SEARCH-4 \n EXIT-5 \n Enter your choice : ");
+	printf("\n INSERT-1 \n DELETE-2 \n DISPLAY-3 \n SEARCH-4 \n SORT-5 \n EXIT -6 \n Enter your choice : ");
 	scanf("%d",&ch);
 	return ch;
 }
 void processStack(){ //working of menu
-	int ch;
-	for (ch=menu();ch!=5;ch=menu()){
+	int ch,b;
+	for (ch=menu();ch!=6;ch=menu()){
 		switch(ch){
 			case 1: //insert 
 				printf("Enter the value to insert : ");
@@ -66,10 +84,12 @@ void processStack(){ //working of menu
 				display();
 				break;
 			case 4: //search
-				int b;
-				printf("Enter the number to search: ");
+				printf("Enter the value to search : ");
 				scanf("%d",&b);
-				search(b);
+				search(b,stack,top);
+				break;
+			case 5:// sort
+				sort();
 				break;
 			default://any other options
 				printf("Error: Wrong Choice");
