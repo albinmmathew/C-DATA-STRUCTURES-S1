@@ -1,0 +1,23 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Compiled Executables
+*.exe
+*.dll
+
+# Documents
+*.pdf
+*.docx
+*.doc
+*.rtf
+
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+# IDE/Editor
+.vscode/
+.idea/
